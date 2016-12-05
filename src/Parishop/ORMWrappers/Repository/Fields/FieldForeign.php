@@ -1,15 +1,22 @@
 <?php
 namespace Parishop\ORMWrappers\Repository\Fields;
 
+/**
+ * Class FieldForeign
+ * @package Parishop\ORMWrappers\Repository\Fields
+ * @since 1.0
+ */
 class FieldForeign extends Field
 {
     /**
      * @var string
+     * @since 1.0
      */
     protected $onUpdate = 'RESTRICT';
 
     /**
      * @var string
+     * @since 1.0
      */
     protected $onDelete = 'RESTRICT';
 
@@ -19,6 +26,7 @@ class FieldForeign extends Field
      * @param Field       $field
      * @param bool        $null
      * @param null|string $default
+     * @since 1.0
      */
     public function __construct($name, $field, $null = true, $default = null)
     {
@@ -28,6 +36,7 @@ class FieldForeign extends Field
 
     /**
      * @return string
+     * @since 1.0
      */
     public function getOnDelete()
     {
@@ -36,6 +45,7 @@ class FieldForeign extends Field
 
     /**
      * @return string
+     * @since 1.0
      */
     public function getOnUpdate()
     {
@@ -44,6 +54,7 @@ class FieldForeign extends Field
 
     /**
      * @param string $onDelete
+     * @since 1.0
      */
     public function setOnDelete($onDelete)
     {
@@ -54,6 +65,7 @@ class FieldForeign extends Field
 
     /**
      * @param string $onUpdate
+     * @since 1.0
      */
     public function setOnUpdate($onUpdate)
     {
@@ -62,5 +74,5 @@ class FieldForeign extends Field
         }
     }
 
-
 }
+

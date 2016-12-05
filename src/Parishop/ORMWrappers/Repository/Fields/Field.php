@@ -1,33 +1,65 @@
 <?php
 namespace Parishop\ORMWrappers\Repository\Fields;
 
+/**
+ * Class Field
+ * @package Parishop\ORMWrappers\Repository\Fields
+ * @since   1.0
+ */
 abstract class Field
 {
-    /** @var string */
+    /**
+     * @var string
+     * @since 1.0
+     */
     protected $name;
 
-    /** @var string */
+    /**
+     * @var string
+     * @since 1.0
+     */
     protected $oldName;
 
-    /** @var string */
+    /**
+     * @var string
+     * @since 1.0
+     */
     protected $type;
 
-    /** @var string */
+    /**
+     * @var string
+     * @since 1.0
+     */
     protected $size;
 
-    /** @var bool */
+    /**
+     * @var bool
+     * @since 1.0
+     */
     protected $null = true;
 
-    /** @var string */
+    /**
+     * @var string
+     * @since 1.0
+     */
     protected $default;
 
-    /** @var string */
+    /**
+     * @var string
+     * @since 1.0
+     */
     protected $after;
 
-    /** @var bool */
+    /**
+     * @var bool
+     * @since 1.0
+     */
     protected $autoincrement = false;
 
-    /** @var bool */
+    /**
+     * @var bool
+     * @since 1.0
+     */
     protected $primary = false;
 
     /**
@@ -36,6 +68,7 @@ abstract class Field
      * @param string $size
      * @param bool   $null
      * @param string $default
+     * @since 1.0
      */
     public function __construct($name, $size = null, $null = true, $default = null)
     {
@@ -47,6 +80,10 @@ abstract class Field
         $this->default   = $default;
     }
 
+    /**
+     * @return string
+     * @since 1.0
+     */
     public function asSQL()
     {
         $size    = $this->size ? '(' . $this->size . ')' : '';
@@ -76,6 +113,7 @@ abstract class Field
 
     /**
      * @return string
+     * @since 1.0
      */
     public function getAfter()
     {
@@ -84,6 +122,7 @@ abstract class Field
 
     /**
      * @return string
+     * @since 1.0
      */
     public function getDefault()
     {
@@ -92,6 +131,7 @@ abstract class Field
 
     /**
      * @return string
+     * @since 1.0
      */
     public function getName()
     {
@@ -100,6 +140,7 @@ abstract class Field
 
     /**
      * @return string
+     * @since 1.0
      */
     public function getOldName()
     {
@@ -108,6 +149,7 @@ abstract class Field
 
     /**
      * @return string
+     * @since 1.0
      */
     public function getSize()
     {
@@ -116,6 +158,7 @@ abstract class Field
 
     /**
      * @return string
+     * @since 1.0
      */
     public function getType()
     {
@@ -124,6 +167,7 @@ abstract class Field
 
     /**
      * @return boolean
+     * @since 1.0
      */
     public function isAutoincrement()
     {
@@ -132,6 +176,7 @@ abstract class Field
 
     /**
      * @return boolean
+     * @since 1.0
      */
     public function isNull()
     {
@@ -140,6 +185,7 @@ abstract class Field
 
     /**
      * @return boolean
+     * @since 1.0
      */
     public function isPrimary()
     {
@@ -149,6 +195,7 @@ abstract class Field
     /**
      * @param string $after
      * @return $this
+     * @since 1.0
      */
     public function setAfter($after)
     {
@@ -159,6 +206,7 @@ abstract class Field
 
     /**
      * @return $this
+     * @since 1.0
      */
     public function setAutoincrement()
     {
@@ -170,6 +218,7 @@ abstract class Field
     /**
      * @param string $default
      * @return $this
+     * @since 1.0
      */
     public function setDefault($default)
     {
@@ -181,6 +230,7 @@ abstract class Field
     /**
      * @param boolean $null
      * @return $this
+     * @since 1.0
      */
     public function setNull($null)
     {
@@ -192,6 +242,7 @@ abstract class Field
     /**
      * @param string $oldName
      * @return $this
+     * @since 1.0
      */
     public function setOldName($oldName)
     {
@@ -202,6 +253,7 @@ abstract class Field
 
     /**
      * @return $this
+     * @since 1.0
      */
     public function setPrimary()
     {
@@ -213,6 +265,7 @@ abstract class Field
     /**
      * @param string $size
      * @return $this
+     * @since 1.0
      */
     public function setSize($size)
     {

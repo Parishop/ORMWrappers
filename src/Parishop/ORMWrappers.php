@@ -9,11 +9,19 @@ namespace Parishop;
 abstract class ORMWrappers extends \PHPixie\ORM\Wrappers\Implementation
 {
     /**
-     * Wrappers constructor.
+     * @var \PHPixie\DefaultBundle\Builder
      * @since 1.0.1
      */
-    public function __construct()
+    protected $builder;
+
+    /**
+     * Wrappers constructor.
+     * @param \PHPixie\DefaultBundle\Builder $builder
+     * @since 1.0.1
+     */
+    public function __construct($builder)
     {
+        $this->builder              = $builder;
         $this->databaseEntities     = array_map('lcfirst', array_map('basename', glob($this->path() . '/ORMWrappers/*', GLOB_ONLYDIR)));
         $this->databaseQueries      = $this->databaseEntities;
         $this->databaseRepositories = $this->databaseEntities;
@@ -43,10 +51,10 @@ abstract class ORMWrappers extends \PHPixie\ORM\Wrappers\Implementation
     {
         $className = get_class($this) . '\\' . ucfirst($repository->modelName()) . '\Repository';
         if(class_exists($className)) {
-            return new $className($repository);
+            return new $className($repository, $this->builder);
         }
 
-        return new ORMWrappers\Repository($repository);
+        return new ORMWrappers\Repository($repository, $this->builder);
     }
 
     /**

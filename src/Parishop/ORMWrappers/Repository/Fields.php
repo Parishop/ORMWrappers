@@ -1,14 +1,23 @@
 <?php
 namespace Parishop\ORMWrappers\Repository;
 
+/**
+ * Class Fields
+ * @package Parishop\ORMWrappers\Repository
+ * @since   1.0
+ */
 class Fields extends \ArrayObject
 {
-    /** @var \Parishop\ORMWrappers\Repository */
+    /**
+     * @var \Parishop\ORMWrappers\Repository
+     * @since 1.0
+     */
     protected $repository;
 
     /**
      * Fields constructor.
      * @param \Parishop\ORMWrappers\Repository $repository
+     * @since 1.0
      */
     public function __construct(\Parishop\ORMWrappers\Repository $repository)
     {
@@ -23,12 +32,19 @@ class Fields extends \ArrayObject
 
     /**
      * @return Fields\Field[]
+     * @since 1.0
      */
     public function asArray()
     {
         return $this->getIterator();
     }
 
+    /**
+     * @param string $separator
+     * @param string $eol
+     * @return string
+     * @since 1.0
+     */
     public function asSQL($separator = ',', $eol = PHP_EOL)
     {
         $sql = [];
@@ -45,6 +61,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param string $default
      * @return Fields\Field\BigInt
+     * @since 1.0
      */
     public function bigInt($name, $size = 20, $null = true, $default = null)
     {
@@ -55,25 +72,11 @@ class Fields extends \ArrayObject
      * @param string $name
      * @param bool   $default
      * @return Fields\Field\TinyInt
+     * @since 1.0
      */
     public function bool($name, $default = false)
     {
         return $this->buildField($name, 'tinyint', 1, false, (int)$default);
-    }
-
-    /**
-     * @param string $fieldName
-     * @return string
-     * @throws Exception
-     */
-    public function changeSQL($fieldName)
-    {
-        $field = $this->get($fieldName);
-        if(($oldName = $field->getOldName()) === null) {
-            $oldName = $fieldName;
-        }
-
-        return 'ALTER TABLE `' . $this->databaseName . '`.`' . $this->tableName . '` CHANGE COLUMN `' . $oldName . '` ' . $field->asSQL() . ';';
     }
 
     /**
@@ -82,6 +85,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param string $default
      * @return Fields\Field\Char
+     * @since 1.0
      */
     public function char($name, $size = 1, $null = true, $default = null)
     {
@@ -89,22 +93,11 @@ class Fields extends \ArrayObject
     }
 
     /**
-     * @param string $fieldName
-     * @return string
-     * @throws Exception
-     */
-    public function createSQL($fieldName)
-    {
-        $field = $this->get($fieldName);
-
-        return 'ALTER TABLE `' . $this->databaseName . '`.`' . $this->tableName . '` ADD COLUMN ' . $field->asSQL() . ';';
-    }
-
-    /**
      * @param string $name
      * @param bool   $null
      * @param string $default
      * @return Fields\Field\Date
+     * @since 1.0
      */
     public function date($name, $null = false, $default = null)
     {
@@ -116,6 +109,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param string $default
      * @return Fields\Field\Datetime
+     * @since 1.0
      */
     public function datetime($name, $null = false, $default = null)
     {
@@ -129,6 +123,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param string $default
      * @return Fields\Field\Decimal
+     * @since 1.0
      */
     public function decimal($name, $size = 10, $point = 0, $null = true, $default = null)
     {
@@ -146,6 +141,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param string $default
      * @return Fields\Field\Double
+     * @since 1.0
      */
     public function double($name, $size = null, $point = null, $null = true, $default = null)
     {
@@ -157,20 +153,12 @@ class Fields extends \ArrayObject
     }
 
     /**
-     * @param string $fieldName
-     * @return string
-     */
-    public function dropSQL($fieldName)
-    {
-        return 'ALTER TABLE `' . $this->databaseName . '`.`' . $this->tableName . '` DROP COLUMN `' . $fieldName . '`;';
-    }
-
-    /**
      * @param string $name
      * @param array  $values
      * @param bool   $null
      * @param string $default
      * @return Fields\Field\Enum
+     * @since 1.0
      */
     public function enum($name, array $values, $null = true, $default = null)
     {
@@ -180,6 +168,7 @@ class Fields extends \ArrayObject
     /**
      * @param string $fieldName
      * @return bool
+     * @since 1.0
      */
     public function exists($fieldName)
     {
@@ -193,6 +182,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param string $default
      * @return Fields\Field\Float
+     * @since 1.0
      */
     public function float($name, $size = null, $point = null, $null = true, $default = null)
     {
@@ -209,6 +199,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param mixed  $default
      * @return Fields\Field\BigInt
+     * @since 1.0
      */
     public function foreign($modelName, $name = null, $null = true, $default = null)
     {
@@ -225,6 +216,7 @@ class Fields extends \ArrayObject
     /**
      * @param string $fieldName
      * @return Fields\Field
+     * @since 1.0
      */
     public function get($fieldName)
     {
@@ -235,6 +227,7 @@ class Fields extends \ArrayObject
      * @param string $name
      * @param int    $size
      * @return Fields\Field\Int
+     * @since 1.0
      */
     public function id($name = 'id', $size = 11)
     {
@@ -249,6 +242,7 @@ class Fields extends \ArrayObject
      * @param string $name
      * @param int    $size
      * @return Fields\Field\BigInt
+     * @since 1.0
      */
     public function idBigInt($name = 'id', $size = 20)
     {
@@ -265,6 +259,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param int    $default
      * @return Fields\Field\Int
+     * @since 1.0
      */
     public function int($name, $size = 11, $null = true, $default = null)
     {
@@ -288,6 +283,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param int    $default
      * @return Fields\Field\MediumInt
+     * @since 1.0
      */
     public function mediumInt($name, $size = 9, $null = true, $default = null)
     {
@@ -299,6 +295,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param int    $default
      * @return Fields\Field\MediumText
+     * @since 1.0
      */
     public function mediumText($name, $null = true, $default = null)
     {
@@ -311,6 +308,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param string $default
      * @return Fields\Field\Set
+     * @since 1.0
      */
     public function set($name, array $values, $null = true, $default = null)
     {
@@ -319,6 +317,7 @@ class Fields extends \ArrayObject
 
     /**
      * @param Fields\Field[] $fields
+     * @since 1.0
      */
     public function setFields($fields)
     {
@@ -346,6 +345,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param int    $default
      * @return Fields\Field\SmallInt
+     * @since 1.0
      */
     public function smallInt($name, $size = 6, $null = true, $default = null)
     {
@@ -357,6 +357,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param int    $default
      * @return Fields\Field\Text
+     * @since 1.0
      */
     public function text($name, $null = true, $default = null)
     {
@@ -368,6 +369,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param string $default
      * @return Fields\Field\Time
+     * @since 1.0
      */
     public function time($name, $null = false, $default = null)
     {
@@ -379,6 +381,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param string $default
      * @return Fields\Field\Timestamp
+     * @since 1.0
      */
     public function timestamp($name = 'created', $null = false, $default = 'CURRENT_TIMESTAMP')
     {
@@ -391,6 +394,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param int    $default
      * @return Fields\Field\TinyInt
+     * @since 1.0
      */
     public function tinyInt($name, $size = 4, $null = true, $default = null)
     {
@@ -402,6 +406,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param int    $default
      * @return Fields\Field\TinyText
+     * @since 1.0
      */
     public function tinyText($name, $null = true, $default = null)
     {
@@ -414,6 +419,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param string $default
      * @return Fields\Field\Varchar
+     * @since 1.0
      */
     public function varchar($name, $size = 255, $null = true, $default = null)
     {
@@ -427,6 +433,7 @@ class Fields extends \ArrayObject
      * @param bool   $null
      * @param string $default
      * @return Fields\Field
+     * @since 1.0
      */
     protected function buildField($name, $type, $size = null, $null = true, $default = null)
     {
@@ -444,10 +451,12 @@ class Fields extends \ArrayObject
      * @param bool                                          $null
      * @param string                                        $default
      * @return Fields\Field
+     * @since 1.0
      */
     protected function buildFieldForeign($name, $field, $null = true, $default = null)
     {
         return new Fields\FieldForeign($name, $field, $null, $default);
     }
+
 }
 

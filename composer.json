@@ -15,8 +15,7 @@
         }
     },
     "require": {
-        "php": ">=5.6",
-        "phpixie/orm": "~3.0"
+        "phpixie/default-bundle": "~3.0"
     },
     "require-dev": {
         "phpixie/test": "~3.0"
